@@ -93,6 +93,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
+                    SizedBox(
+                        child: Text("WELCOME TO PHI SECURE",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold))),
+                    SizedBox(
+                        child: Text("Keep Calm and Learn",
+                            textAlign: TextAlign.center,
+                            style:
+                                TextStyle(fontSize: 15, color: Colors.black))),
                     SizedBox(height: 45),
                     emailField,
                     SizedBox(height: 25),
