@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "744007311190",
+    "project_id": "emailpasswordauth-cf19c",
+    "storage_bucket": "emailpasswordauth-cf19c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744007311190:android:27221932750601015b40f7",
+        "android_client_info": {
+          "package_name": "com.example.registerlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744007311190-md6fhljksmk0blimklk925mtqb7496ti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.registerlogin",
+            "certificate_hash": "6da6d8fa289acef44bd362dcc6cf9865198dfc9c"
+          }
+        },
+        {
+          "client_id": "744007311190-7ul62dl0sja4chjil4uv6kuuphhuge80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc72b8O-w_QcN0eD51kozNBuEdca9mx-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744007311190-7ul62dl0sja4chjil4uv6kuuphhuge80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
