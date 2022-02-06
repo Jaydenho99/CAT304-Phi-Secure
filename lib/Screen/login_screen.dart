@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:registerlogin/Screen/boarding_screen.dart';
 import 'package:registerlogin/Screen/home_screen.dart';
 import 'package:registerlogin/Screen/register_screen.dart';
 
@@ -97,6 +98,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          // redirect to login page
+          onPressed: () => {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => BoardingPage()))
+          },
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
