@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/boarding_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
+import 'package:registerlogin/Screen/testing.dart';
+import 'package:registerlogin/Screen/view_user_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
