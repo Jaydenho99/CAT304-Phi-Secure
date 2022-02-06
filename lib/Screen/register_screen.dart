@@ -84,12 +84,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       controller: passwordEditingController,
       obscureText: true,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{6,}$');
+        RegExp regex = new RegExp(
+            r'^(?=.*[A-Z]{1,})(?=.*[!@#$&*]{1,})(?=.*[0-9]{1,}).{6,}$');
         if (value!.isEmpty) {
           return ("Password is required for login");
         }
         if (!regex.hasMatch(value)) {
-          return ("Please Enter Valid Password(Min. 6 Character)");
+          return ("Please Enter Valid Password \nMin. 6 Character \nMin. 1 uppercase \nMin. 1 special character \nMin. 1 digit)");
         }
       },
       onSaved: (value) {

@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:registerlogin/Screen/leaderboard.dart';
+import 'package:registerlogin/Screen/boarding_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
 import 'package:registerlogin/Screen/testing.dart';
 import 'package:registerlogin/Screen/view_user_screen.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Profile(),
+      home: LoginScreen(),
     );
   }
 }
