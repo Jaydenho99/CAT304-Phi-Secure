@@ -240,6 +240,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.email = user!.email;
     userModel.uid = user!.uid;
     userModel.username = usernameEditingController.text;
+    userModel.point = 0;
+    userModel.photo =
+        "https://clipart.world/wp-content/uploads/2020/06/Black-and-White-Question-Mark-clipart.png";
 
     await firebaseFirestore
         .collection("users")
