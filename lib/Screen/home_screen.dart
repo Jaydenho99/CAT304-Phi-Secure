@@ -28,13 +28,77 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  final FlashCardButton = Material(
+    elevation: 5,
+    borderRadius: BorderRadius.circular(30),
+    color: Colors.blue,
+    child: MaterialButton(
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        onPressed: () {},
+        child: Text(
+          "FlashCards",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+        )),
+  );
+
+  final quizButton = Material(
+    elevation: 5,
+    borderRadius: BorderRadius.circular(30),
+    color: Colors.blue,
+    child: MaterialButton(
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        onPressed: () {},
+        child: Text(
+          "Quiz",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+        )),
+  );
+
+  final LeaderboardButton = Material(
+    elevation: 5,
+    borderRadius: BorderRadius.circular(30),
+    color: Colors.blue,
+    child: MaterialButton(
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        onPressed: () {},
+        child: Text(
+          "Leaderboard",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+        )),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome"),
-        centerTitle: true,
-      ),
+          title: Row(
+        children: <Widget>[
+          Text(
+            "Welcome ${loggedInUser.username}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+          ),
+          SizedBox(
+            width: 80,
+          ),
+          ActionChip(
+              label: Text(
+                "Logout",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                logout(context);
+              })
+        ],
+      )),
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(20),
@@ -46,23 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 180,
                 child: Image.asset("assets/logo.png", fit: BoxFit.contain),
               ),
-              Text(
-                "Welcome back",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Text("${loggedInUser.username}",
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w500)),
-              Text("${loggedInUser.email}",
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w500)),
-              SizedBox(height: 15),
-              ActionChip(
-                  label: Text("Logout"),
-                  onPressed: () {
-                    logout(context);
-                  })
+              SizedBox(height: 5),
+              FlashCardButton,
+              SizedBox(height: 20),
+              quizButton,
+              SizedBox(height: 20),
+              LeaderboardButton,
+              SizedBox(height: 20),
             ],
           ),
         ),
