@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:registerlogin/Screen/leaderboard_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
 import 'package:registerlogin/models/user_model.dart';
 
@@ -37,36 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {},
         child: Text(
           "FlashCards",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        )),
-  );
-
-  final quizButton = Material(
-    elevation: 5,
-    borderRadius: BorderRadius.circular(30),
-    color: Colors.blue,
-    child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        onPressed: () {},
-        child: Text(
-          "Quiz",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-        )),
-  );
-
-  final LeaderboardButton = Material(
-    elevation: 5,
-    borderRadius: BorderRadius.circular(30),
-    color: Colors.blue,
-    child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        onPressed: () {},
-        child: Text(
-          "Leaderboard",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
@@ -111,11 +82,65 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Image.asset("assets/logo.png", fit: BoxFit.contain),
               ),
               SizedBox(height: 5),
-              FlashCardButton,
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.blue,
+                child: MaterialButton(
+                  padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                  minWidth: MediaQuery.of(context).size.width,
+                  onPressed: () {},
+                  child: Text(
+                    "FlashCards",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
-              quizButton,
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.blue,
+                child: MaterialButton(
+                    padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                    minWidth: MediaQuery.of(context).size.width,
+                    onPressed: () {},
+                    child: Text(
+                      "Quiz",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ),
               SizedBox(height: 20),
-              LeaderboardButton,
+              Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.blue,
+                child: MaterialButton(
+                    padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                    minWidth: MediaQuery.of(context).size.width,
+                    onPressed: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LeaderBoard()))
+                        },
+                    child: Text(
+                      "Leaderboard",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    )),
+              ),
               SizedBox(height: 20),
             ],
           ),
