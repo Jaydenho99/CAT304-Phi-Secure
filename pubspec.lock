@@ -241,6 +241,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+  gradient_widgets:
+    dependency: "direct dev"
+    description:
+      name: gradient_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0"
   grpc:
     dependency: transitive
     description:
