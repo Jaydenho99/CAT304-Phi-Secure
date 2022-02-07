@@ -1,16 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:registerlogin/Screen/leaderboard_screen.dart';
 
 class Profile extends StatefulWidget {
   final String username;
   final int point;
   final String photo;
+  final int rank;
   const Profile(
       {Key? key,
       required this.username,
       required this.point,
-      required this.photo})
+      required this.photo,
+      required this.rank})
       : super(key: key);
 
   @override
@@ -25,13 +28,16 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.person_add)),
-        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LeaderBoard()));
+          },
+        ),
+        actions: [],
         title: Text(
-          "LeaderBoard",
+          "User Profile",
           style: TextStyle(fontSize: 29),
         ),
         centerTitle: true,
@@ -113,7 +119,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       Column(
                         children: [
-                          Text("#69",
+                          Text("#${widget.rank + 1}",
                               style: TextStyle(
                                   fontSize: 42,
                                   fontWeight: FontWeight.w300,
@@ -130,51 +136,6 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Leaderboard",
-              style: TextStyle(fontSize: 20),
-            ),
-            Container(
-              margin: EdgeInsets.all(20),
-              child: SizedBox(
-                height: 300,
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  "https://i.kym-cdn.com/entries/icons/original/000/026/152/gigachad.jpg"),
-                            ),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Text("KEKL")
-                          ],
-                        ),
-                        leading: Text(
-                          "#${index + 1}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: Text(
-                            "${(200000 / (index + 1)).toString().substring(0, 5)} pts",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      );
-                    },
-                    separatorBuilder: (context, index) => Divider(
-                          thickness: 1,
-                          color: Colors.purple,
-                          indent: 10,
-                          endIndent: 10,
-                        ),
-                    itemCount: 5),
-              ),
-            )
           ],
         ),
       ),
