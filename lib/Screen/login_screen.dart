@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.blue),
-          // redirect to login page
+          // redirect to boarding page
           onPressed: () => {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => BoardingPage()))
