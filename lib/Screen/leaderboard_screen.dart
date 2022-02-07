@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/home_screen.dart';
+import 'package:registerlogin/Screen/view_user_screen.dart';
 
 class LeaderBoard extends StatefulWidget {
   @override
@@ -222,7 +223,29 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         top: 12.0,
                                                         right: 20.0),
                                                     child: ElevatedButton(
-                                                      onPressed: () {},
+                                                      onPressed: () => {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) => Profile(
+                                                                  username: (snapshot
+                                                                          .data!
+                                                                          .docs[
+                                                                              index]
+                                                                          .data() as dynamic)[
+                                                                      'username'],
+                                                                  point: (snapshot
+                                                                          .data!
+                                                                          .docs[
+                                                                              index]
+                                                                          .data() as dynamic)[
+                                                                      'point'],
+                                                                  photo: (snapshot
+                                                                      .data!
+                                                                      .docs[index]
+                                                                      .data() as dynamic)['photo']),
+                                                            )),
+                                                      },
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                         primary: Colors

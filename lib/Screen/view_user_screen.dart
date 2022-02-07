@@ -3,7 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final String username;
+  final int point;
+  final String photo;
+  const Profile(
+      {Key? key,
+      required this.username,
+      required this.point,
+      required this.photo})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -45,8 +53,7 @@ class _ProfileState extends State<Profile> {
                   Stack(
                     children: [
                       CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            "https://i.kym-cdn.com/entries/icons/original/000/026/152/gigachad.jpg"),
+                        backgroundImage: NetworkImage("${widget.photo}"),
                         radius: 50,
                       ),
                       Positioned(
@@ -68,7 +75,7 @@ class _ProfileState extends State<Profile> {
                     height: 10,
                   ),
                   Text(
-                    "Giga Chad",
+                    "${widget.username}",
                     style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
@@ -91,7 +98,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "6969",
+                            "${widget.point}",
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
