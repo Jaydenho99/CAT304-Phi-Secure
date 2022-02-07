@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:registerlogin/Screen/testView.dart';
 
 class LeaderBoard extends StatefulWidget {
   @override
@@ -8,6 +9,17 @@ class LeaderBoard extends StatefulWidget {
 
 class _LeaderBoardState extends State<LeaderBoard> {
   int i = 0;
+  int k = 0;
+  String id = "";
+
+//*  void _sendDataToSecondScreen(BuildContext context) {
+//   String IdToSend = context as String;
+//    Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//          builder: (context) => Profile(Id: IdToSend,),
+//        ));
+//  }//
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +66,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           i = 0;
+                          k = 0;
                           return ListView.builder(
                               itemCount: snapshot.data?.docs.length,
                               itemBuilder: (context, index) {
@@ -199,7 +212,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                     top: 12.0,
                                                     right: 20.0),
                                                 child: ElevatedButton(
-                                                  onPressed: () {},
+                                                  onPressed:
+                                                      () {}, //{_sendDataToSecondScreen((snapshot.data!.docs[index].data() as dynamic)['uid']);},
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                     primary:
