@@ -53,17 +53,24 @@ class _OTP_ScreenState extends State<OTP_Screen> {
               followingFieldDecoration: pinPutDecoration,
               pinAnimationType: PinAnimationType.fade,
               onSubmit: (pin) async {
+                final PhoneAuthCredential credential =
+                    PhoneAuthProvider.credential(
+                        verificationId: _verificationCode, smsCode: pin);
                 try {
-                  final PhoneAuthCredential credential =
-                      PhoneAuthProvider.credential(
-                          verificationId: _verificationCode, smsCode: pin);
                   FirebaseAuth.instance.currentUser!
-                      .linkWithCredential(credential);
-                  Fluttertoast.showToast(msg: "Account Created Successfully");
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                      (route) => false);
+                      .linkWithCredential(credential)
+                      .then((value) async {
+                    if (value.user != null) {
+                      Fluttertoast.showToast(
+                          msg: "Account Created Successfully");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (route) => false);
+                    }
+                  }).catchError((e) {
+                    Fluttertoast.showToast(msg: e!.message);
+                  });
                 } catch (e) {
                   FocusScope.of(context).unfocus();
                   ScaffoldMessenger.of(context)
