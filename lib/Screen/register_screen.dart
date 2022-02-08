@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:registerlogin/Screen/Phone_Authetication.dart';
 import 'package:registerlogin/Screen/home_screen.dart';
 import 'package:registerlogin/models/user_model.dart';
 
@@ -249,11 +250,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Account Created Successfully");
+    Fluttertoast.showToast(msg: "Navigating to OTP Verification");
 
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => phone_auth()),
         (route) => false);
   }
 }

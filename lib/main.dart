@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:registerlogin/Screen/Phone_Authetication.dart';
 import 'package:registerlogin/Screen/boarding_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
 import 'package:registerlogin/Screen/leaderboard_screen.dart';
