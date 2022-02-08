@@ -250,7 +250,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Account Created Successfully");
+    Fluttertoast.showToast(msg: "Navigating to OTP Verification");
 
     Navigator.pushAndRemoveUntil(
         context,

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:registerlogin/Screen/home_screen.dart';
 
@@ -32,7 +34,7 @@ class _OTP_ScreenState extends State<OTP_Screen> {
             margin: EdgeInsets.only(top: 40),
             child: Center(
               child: Text(
-                "Verify +1-${widget.phone}",
+                "Verify +60${widget.phone}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
@@ -52,17 +54,16 @@ class _OTP_ScreenState extends State<OTP_Screen> {
               pinAnimationType: PinAnimationType.fade,
               onSubmit: (pin) async {
                 try {
-                  await FirebaseAuth.instance
-                      .signInWithCredential(PhoneAuthProvider.credential(
-                          verificationId: _verificationCode, smsCode: pin))
-                      .then((value) async {
-                    if (value.user != null) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (route) => false);
-                    }
-                  });
+                  final PhoneAuthCredential credential =
+                      PhoneAuthProvider.credential(
+                          verificationId: _verificationCode, smsCode: pin);
+                  FirebaseAuth.instance.currentUser!
+                      .linkWithCredential(credential);
+                  Fluttertoast.showToast(msg: "Account Created Successfully");
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      (route) => false);
                 } catch (e) {
                   FocusScope.of(context).unfocus();
                   ScaffoldMessenger.of(context)
@@ -78,18 +79,10 @@ class _OTP_ScreenState extends State<OTP_Screen> {
 
   _verifyPhone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+1${widget.phone}',
+        phoneNumber: '+60${widget.phone}',
         verificationCompleted: (PhoneAuthCredential credential) async {
-          await FirebaseAuth.instance
-              .signInWithCredential(credential)
-              .then((value) async {
-            if (value.user != null) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                  (route) => false);
-            }
-          });
+          await FirebaseAuth.instance.currentUser!
+              .updatePhoneNumber(credential);
         },
         verificationFailed: (FirebaseAuthException e) {
           print(e.message);

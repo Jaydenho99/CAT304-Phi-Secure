@@ -35,7 +35,7 @@ class _phone_authState extends State<phone_auth> {
                   hintText: "Phone Number",
                   prefix: Padding(
                     padding: EdgeInsets.all(4),
-                    child: Text('+1'),
+                    child: Text('+60'),
                   ),
                 ),
                 maxLength: 10,
