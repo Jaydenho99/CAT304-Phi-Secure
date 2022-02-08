@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/home_screen.dart';
-import 'package:registerlogin/Screen/view_user_screen.dart';
+import 'package:registerlogin/Screen/view_flashcard_screen.dart';
 
-class LeaderBoard extends StatefulWidget {
+class Flashcard extends StatefulWidget {
   @override
-  _LeaderBoardState createState() => _LeaderBoardState();
+  _FlashcardState createState() => _FlashcardState();
 }
 
-class _LeaderBoardState extends State<LeaderBoard> {
+class _FlashcardState extends State<Flashcard> {
   int i = 0;
 
   @override
@@ -38,16 +38,16 @@ class _LeaderBoardState extends State<LeaderBoard> {
                     margin: EdgeInsets.only(left: 15.0, top: 10.0),
                     child: RichText(
                         text: TextSpan(
-                            text: "Leader",
+                            text: "Flash",
                             style: TextStyle(
                                 color: Colors.deepPurple,
                                 fontSize: 30.0,
                                 fontWeight: FontWeight.bold),
                             children: [
                           TextSpan(
-                              text: "Board",
+                              text: "Card",
                               style: TextStyle(
-                                  color: Colors.pink,
+                                  color: Colors.blue,
                                   fontSize: 30.0,
                                   fontWeight: FontWeight.bold))
                         ])),
@@ -55,15 +55,15 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   Padding(
                     padding: EdgeInsets.only(left: 15.0),
                     child: Text(
-                      'PHI Secure Rank Board: ',
+                      'PHI Secure Flashcard List: ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Flexible(
                       child: StreamBuilder<QuerySnapshot>(
                           stream: FirebaseFirestore.instance
-                              .collection('users')
-                              .orderBy('point', descending: true)
+                              .collection('Flashcard')
+                              .orderBy('Name', descending: false)
                               .snapshots(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
@@ -75,9 +75,9 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                     if (index >= 1) {
                                       print('Greater than 1');
                                       if ((snapshot.data!.docs[index].data()
-                                              as dynamic)['point'] ==
+                                              as dynamic)['Name'] ==
                                           (snapshot.data!.docs[index - 1].data()
-                                              as dynamic)['point']) {
+                                              as dynamic)['Name']) {
                                         print('Same');
                                       } else {
                                         i++;
@@ -92,13 +92,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                           decoration: BoxDecoration(
                                               color: Colors.blue,
                                               border: Border.all(
-                                                  color: index == 0
-                                                      ? Colors.yellowAccent
-                                                      : index == 1
-                                                          ? Colors.grey.shade300
-                                                          : index == 2
+                                                  color: i == 0
+                                                      ? Colors.yellow
+                                                      : i == 1
+                                                          ? Colors.grey
+                                                          : i == 2
                                                               ? Colors.brown
-                                                              : Colors.white38,
+                                                              : Colors.white,
                                                   width: 3.0,
                                                   style: BorderStyle.solid),
                                               borderRadius:
@@ -126,21 +126,11 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                           alignment: Alignment
                                                               .centerLeft,
                                                           child: Text(
-                                                            (index + 1)
-                                                                    .toString() +
+                                                            (i + 1).toString() +
                                                                 ".",
                                                             style: TextStyle(
-                                                                color: index ==
-                                                                        0
-                                                                    ? Colors
-                                                                        .yellowAccent
-                                                                    : index == 1
-                                                                        ? Colors.grey[
-                                                                            300]
-                                                                        : index ==
-                                                                                2
-                                                                            ? Colors.brown
-                                                                            : Colors.white),
+                                                                color: Colors
+                                                                    .white),
                                                           ),
                                                         ),
                                                       ],
@@ -151,21 +141,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         const EdgeInsets.only(
                                                             top: 5.0,
                                                             left: 15.0),
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        CircleAvatar(
-                                                            child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                    image: DecorationImage(
-                                                                        image: NetworkImage((snapshot
-                                                                            .data!
-                                                                            .docs[index]
-                                                                            .data() as dynamic)['photo']),
-                                                                        fit: BoxFit.fill)))),
-                                                      ],
-                                                    ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -185,10 +160,9 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                 .centerLeft,
                                                             child: Text(
                                                               (snapshot.data!
-                                                                          .docs[index]
-                                                                          .data()
-                                                                      as dynamic)[
-                                                                  'username'],
+                                                                      .docs[index]
+                                                                      .data()
+                                                                  as dynamic)['Name'],
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white,
@@ -197,36 +171,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                           .w500),
                                                               maxLines: 6,
                                                             )),
-                                                        Text(
-                                                          "Points: " +
-                                                              (snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data()
-                                                                      as dynamic)['point']
-                                                                  .toString(),
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
                                                       ],
                                                     ),
                                                   ),
                                                   Flexible(child: Container()),
-                                                  index == 0
-                                                      ? Text("👑", style: r)
-                                                      : index == 1
-                                                          ? Text(
-                                                              "🥈",
-                                                              style: r,
-                                                            )
-                                                          : index == 2
-                                                              ? Text(
-                                                                  "🥉",
-                                                                  style: r,
-                                                                )
-                                                              : Text(''),
                                                   Padding(
                                                     padding: EdgeInsets.only(
                                                         left: 20.0,
@@ -237,25 +185,39 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Profile(
-                                                                username: (snapshot
+                                                              builder: (context) =>
+                                                                  ViewFlashcard(
+                                                                name: (snapshot
                                                                         .data!
                                                                         .docs[index]
                                                                         .data()
-                                                                    as dynamic)['username'],
-                                                                point: (snapshot
+                                                                    as dynamic)['Name'],
+                                                                number: index,
+                                                                card1: (snapshot
                                                                         .data!
                                                                         .docs[index]
                                                                         .data()
-                                                                    as dynamic)['point'],
-                                                                photo: (snapshot
+                                                                    as dynamic)['Card1'],
+                                                                card2: (snapshot
                                                                         .data!
                                                                         .docs[index]
                                                                         .data()
-                                                                    as dynamic)['photo'],
-                                                                rank: index,
+                                                                    as dynamic)['Card2'],
+                                                                card3: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['Card3'],
+                                                                card4: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['Card4'],
+                                                                card5: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['Card5'],
                                                               ),
                                                             )),
                                                       },
@@ -265,7 +227,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                             .deepPurpleAccent,
                                                       ),
                                                       child: Text(
-                                                        "View Profile",
+                                                        "View Flascard",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontWeight:
