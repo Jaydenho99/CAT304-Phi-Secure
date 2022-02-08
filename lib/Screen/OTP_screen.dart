@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+import 'package:registerlogin/Screen/home_screen.dart';
 
 class OTP_Screen extends StatefulWidget {
   final String phone;
@@ -10,7 +11,8 @@ class OTP_Screen extends StatefulWidget {
 }
 
 class _OTP_ScreenState extends State<OTP_Screen> {
-  String _verificationCode;
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+  String _verificationCode = "";
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
   final BoxDecoration pinPutDecoration = BoxDecoration(
@@ -30,7 +32,7 @@ class _OTP_ScreenState extends State<OTP_Screen> {
             margin: EdgeInsets.only(top: 40),
             child: Center(
               child: Text(
-                "Verify +60${widget.phone}",
+                "Verify +1-${widget.phone}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
@@ -38,17 +40,35 @@ class _OTP_ScreenState extends State<OTP_Screen> {
           Padding(
             padding: const EdgeInsets.all(30),
             child: PinPut(
-              fieldsCount: 4,
+              fieldsCount: 6,
               textStyle: const TextStyle(fontSize: 25, color: Colors.white),
               eachFieldWidth: 40,
               eachFieldHeight: 55,
-              //onSubmit: (String pin) => _showSnackBar(pin),
               focusNode: _pinPutFocusNode,
               controller: _pinPutController,
               submittedFieldDecoration: pinPutDecoration,
               selectedFieldDecoration: pinPutDecoration,
               followingFieldDecoration: pinPutDecoration,
               pinAnimationType: PinAnimationType.fade,
+              onSubmit: (pin) async {
+                try {
+                  await FirebaseAuth.instance
+                      .signInWithCredential(PhoneAuthProvider.credential(
+                          verificationId: _verificationCode, smsCode: pin))
+                      .then((value) async {
+                    if (value.user != null) {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (route) => false);
+                    }
+                  });
+                } catch (e) {
+                  FocusScope.of(context).unfocus();
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text("OTP Invalid")));
+                }
+              },
             ),
           ),
         ],
@@ -56,15 +76,41 @@ class _OTP_ScreenState extends State<OTP_Screen> {
     );
   }
 
-  _verifyPhone() async{
-    await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: "+60${widget.phone}", 
-    verificationCompleted: null, 
-    verificationFailed: null, 
-    codeSent: (String verificationID, int resendToken){
-      setState(() {
-        _verificationCode= verificationID;
-      });
-    }, 
-    codeAutoRetrievalTimeout: null)
+  _verifyPhone() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+1${widget.phone}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance
+              .signInWithCredential(credential)
+              .then((value) async {
+            if (value.user != null) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  (route) => false);
+            }
+          });
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print(e.message);
+        },
+        codeSent: (String verficationID, int? resendToken) {
+          setState(() {
+            _verificationCode = verficationID;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {
+          setState(() {
+            _verificationCode = verificationID;
+          });
+        },
+        timeout: Duration(seconds: 60));
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _verifyPhone();
   }
 }
