@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/leaderboard_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
 import 'package:registerlogin/models/user_model.dart';
+import 'package:registerlogin/Screen/flashcard_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -89,7 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: MaterialButton(
                   padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                   minWidth: MediaQuery.of(context).size.width,
-                  onPressed: () {},
+                  onPressed: () => {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Flashcard()))
+                  },
                   child: Text(
                     "FlashCards",
                     textAlign: TextAlign.center,
@@ -108,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: MaterialButton(
                     padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                     minWidth: MediaQuery.of(context).size.width,
-                    onPressed: () {},
+                    onPressed: () => {},
                     child: Text(
                       "Quiz",
                       textAlign: TextAlign.center,
