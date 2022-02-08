@@ -227,23 +227,26 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                              builder: (context) => Profile(
-                                                                  username: (snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data() as dynamic)[
-                                                                      'username'],
-                                                                  point: (snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data() as dynamic)[
-                                                                      'point'],
-                                                                  photo: (snapshot
-                                                                      .data!
-                                                                      .docs[index]
-                                                                      .data() as dynamic)['photo']),
+                                                              builder:
+                                                                  (context) =>
+                                                                      Profile(
+                                                                username: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['username'],
+                                                                point: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['point'],
+                                                                photo: (snapshot
+                                                                        .data!
+                                                                        .docs[index]
+                                                                        .data()
+                                                                    as dynamic)['photo'],
+                                                                rank: index,
+                                                              ),
                                                             )),
                                                       },
                                                       style: ElevatedButton
