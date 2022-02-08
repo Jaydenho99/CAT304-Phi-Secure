@@ -1,28 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:registerlogin/Screen/leaderboard_screen.dart';
+import 'package:registerlogin/Screen/flashcard_screen.dart';
 
-class Profile extends StatefulWidget {
-  final String username;
-  final int point;
-  final String photo;
-  final int rank;
-  const Profile(
+class ViewFlashcard extends StatefulWidget {
+  final String name;
+  final String card1;
+  final String card2;
+  final String card3;
+  final String card4;
+  final String card5;
+  final int number;
+
+  const ViewFlashcard(
       {Key? key,
-      required this.username,
-      required this.point,
-      required this.photo,
-      required this.rank})
+      required this.name,
+      required this.card1,
+      required this.card2,
+      required this.card3,
+      required this.card4,
+      required this.card5,
+      required this.number})
       : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  _ViewFlashcardState createState() => _ViewFlashcardState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ViewFlashcardState extends State<ViewFlashcard> {
   final Stream<QuerySnapshot> users =
-      FirebaseFirestore.instance.collection('users').snapshots();
+      FirebaseFirestore.instance.collection('Flashcard').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +38,13 @@ class _ProfileState extends State<Profile> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LeaderBoard()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Flashcard()));
           },
         ),
         actions: [],
         title: Text(
-          "User Profile",
+          "Flashcard",
           style: TextStyle(fontSize: 29),
         ),
         centerTitle: true,
@@ -58,10 +65,6 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Stack(
                     children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage("${widget.photo}"),
-                        radius: 50,
-                      ),
                       Positioned(
                         bottom: 0.0,
                         right: 0.0,
@@ -81,7 +84,7 @@ class _ProfileState extends State<Profile> {
                     height: 10,
                   ),
                   Text(
-                    "${widget.username}",
+                    "${widget.name}",
                     style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
@@ -104,13 +107,13 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "${widget.point}",
+                            "${widget.card1}",
                             style: TextStyle(
                                 fontSize: 42,
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white.withOpacity(0.9)),
                           ),
-                          Text("Points",
+                          Text("Card 1",
                               style: TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.bold,
@@ -119,12 +122,12 @@ class _ProfileState extends State<Profile> {
                       ),
                       Column(
                         children: [
-                          Text("#${widget.rank + 1}",
+                          Text("${widget.card2}",
                               style: TextStyle(
                                   fontSize: 42,
                                   fontWeight: FontWeight.w300,
                                   color: Colors.white.withOpacity(0.9))),
-                          Text("Rank",
+                          Text("Card 2",
                               style: TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.bold,
