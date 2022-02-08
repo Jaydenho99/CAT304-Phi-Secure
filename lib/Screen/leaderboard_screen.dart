@@ -92,13 +92,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                           decoration: BoxDecoration(
                                               color: Colors.blue,
                                               border: Border.all(
-                                                  color: i == 0
-                                                      ? Colors.yellow
-                                                      : i == 1
-                                                          ? Colors.grey
-                                                          : i == 2
+                                                  color: index == 0
+                                                      ? Colors.yellowAccent
+                                                      : index == 1
+                                                          ? Colors.grey.shade300
+                                                          : index == 2
                                                               ? Colors.brown
-                                                              : Colors.white,
+                                                              : Colors.white38,
                                                   width: 3.0,
                                                   style: BorderStyle.solid),
                                               borderRadius:
@@ -126,11 +126,21 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                           alignment: Alignment
                                                               .centerLeft,
                                                           child: Text(
-                                                            (i + 1).toString() +
+                                                            (index + 1)
+                                                                    .toString() +
                                                                 ".",
                                                             style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
+                                                                color: index ==
+                                                                        0
+                                                                    ? Colors
+                                                                        .yellowAccent
+                                                                    : index == 1
+                                                                        ? Colors.grey[
+                                                                            300]
+                                                                        : index ==
+                                                                                2
+                                                                            ? Colors.brown
+                                                                            : Colors.white),
                                                           ),
                                                         ),
                                                       ],
@@ -204,14 +214,14 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                     ),
                                                   ),
                                                   Flexible(child: Container()),
-                                                  i == 0
+                                                  index == 0
                                                       ? Text("👑", style: r)
-                                                      : i == 1
+                                                      : index == 1
                                                           ? Text(
                                                               "🥈",
                                                               style: r,
                                                             )
-                                                          : i == 2
+                                                          : index == 2
                                                               ? Text(
                                                                   "🥉",
                                                                   style: r,
