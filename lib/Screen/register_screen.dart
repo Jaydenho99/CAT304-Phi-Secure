@@ -14,6 +14,22 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String? _selected;
+  List listItem = ['item1', 'item2'];
+  /*List<Map> _myJSON = [
+    {
+      'id': '1',
+      'image': 'https://i.redd.it/qen45uphfmq41.jpg',
+      'name': 'GigaChad',
+    },
+    {
+      'id': '2',
+      'image':
+          'https://clipart.world/wp-content/uploads/2020/06/Black-and-White-Question-Mark-clipart.png',
+      'name': 'B&W',
+    },
+  ];
+  */
   final _auth = FirebaseAuth.instance;
   //form key
   final _formKey = GlobalKey<FormState>();
@@ -201,6 +217,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     passwordField,
                     SizedBox(height: 20),
                     confirmPasswordField,
+                    SizedBox(height: 20),
+                    SizedBox(
+                        child: DropdownButton<String>(
+                      hint: Text("Select User Profile Image: "),
+                      value: _selected,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selected = newValue;
+                        });
+                      },
+                      items: listItem.map((valueItem) {
+                        return DropdownMenuItem<String>(
+                          value: valueItem,
+                          child: Text(valueItem),
+                        );
+                      }).toList(),
+                    )),
                     SizedBox(height: 15),
                     registerButton,
                     SizedBox(
@@ -243,8 +276,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user!.uid;
     userModel.username = usernameEditingController.text;
     userModel.point = 0;
-    userModel.photo =
-        "https://clipart.world/wp-content/uploads/2020/06/Black-and-White-Question-Mark-clipart.png";
+    userModel.photo = _selected;
 
     await firebaseFirestore
         .collection("users")
