@@ -40,6 +40,7 @@ dependencies:
   flutter_custom_clippers: ^2.0.0
   google_fonts: ^2.2.0
   static_grpc: ^0.1.0
+  flash_card: ^0.0.7
 
 dev_dependencies:
   flutter_lints: ^1.0.0
