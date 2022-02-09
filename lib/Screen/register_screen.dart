@@ -15,21 +15,15 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String? _selected;
-  List listItem = ['item1', 'item2'];
-  /*List<Map> _myJSON = [
-    {
-      'id': '1',
-      'image': 'https://i.redd.it/qen45uphfmq41.jpg',
-      'name': 'GigaChad',
-    },
-    {
-      'id': '2',
-      'image':
-          'https://clipart.world/wp-content/uploads/2020/06/Black-and-White-Question-Mark-clipart.png',
-      'name': 'B&W',
-    },
+  List listItem = [
+    'https://i.redd.it/qen45uphfmq41.jpg',
+    'https://i.dlpng.com/static/png/5612718-pogchamp-internet-meme-wiki-fandom-powered-by-wikia-pogchamp-emote-548_800_preview.png',
+    'https://static.wikia.nocookie.net/unofficial-leftypol-discord/images/b/b6/49660310_2169287269832385_8455064145011074451_n-9462267486.jpg/revision/latest/scale-to-width-down/312?cb=20190503164352',
+    'https://gamefabrique.com/storage/screenshots/pc/onii-chan-asobo-13.png',
+    'https://i.kym-cdn.com/entries/icons/original/000/026/152/gigachad.jpg',
+    'https://www.streamscheme.com/wp-content/uploads/2020/08/pepelaugh-emote.png'
   ];
-  */
+
   final _auth = FirebaseAuth.instance;
   //form key
   final _formKey = GlobalKey<FormState>();
@@ -218,22 +212,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(height: 20),
                     confirmPasswordField,
                     SizedBox(height: 20),
-                    SizedBox(
-                        child: DropdownButton<String>(
-                      hint: Text("Select User Profile Image: "),
-                      value: _selected,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selected = newValue;
-                        });
-                      },
-                      items: listItem.map((valueItem) {
-                        return DropdownMenuItem<String>(
-                          value: valueItem,
-                          child: Text(valueItem),
-                        );
-                      }).toList(),
-                    )),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                                child: DropdownButtonHideUnderline(
+                              child: ButtonTheme(
+                                alignedDropdown: true,
+                                child: DropdownButton<String>(
+                                  hint: Text('Select User Profile Image'),
+                                  value: _selected,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      _selected = newValue;
+                                    });
+                                  },
+                                  items: listItem.map((valueItem) {
+                                    return DropdownMenuItem<String>(
+                                        value: valueItem,
+                                        child: Image.network(valueItem,
+                                            width: 80));
+                                  }).toList(),
+                                  icon: Icon(Icons.image),
+                                ),
+                              ),
+                            ))
+                          ],
+                        )),
                     SizedBox(height: 15),
                     registerButton,
                     SizedBox(
@@ -276,7 +285,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user!.uid;
     userModel.username = usernameEditingController.text;
     userModel.point = 0;
-    userModel.photo = _selected;
+    if (_selected == null) {
+      userModel.photo =
+          'https://clipart.world/wp-content/uploads/2020/06/Black-and-White-Question-Mark-clipart.png';
+    } else {
+      userModel.photo = _selected;
+    }
 
     await firebaseFirestore
         .collection("users")
