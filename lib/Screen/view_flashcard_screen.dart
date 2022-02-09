@@ -10,18 +10,16 @@ class ViewFlashcard extends StatefulWidget {
   final String card3;
   final String card4;
   final String card5;
-  final int number;
 
-  const ViewFlashcard(
-      {Key? key,
-      required this.name,
-      required this.card1,
-      required this.card2,
-      required this.card3,
-      required this.card4,
-      required this.card5,
-      required this.number})
-      : super(key: key);
+  const ViewFlashcard({
+    Key? key,
+    required this.name,
+    required this.card1,
+    required this.card2,
+    required this.card3,
+    required this.card4,
+    required this.card5,
+  }) : super(key: key);
 
   @override
   _ViewFlashcardState createState() => _ViewFlashcardState();
@@ -44,104 +42,25 @@ class _ViewFlashcardState extends State<ViewFlashcard> {
         ),
         actions: [],
         title: Text(
-          "Flashcard",
+          "${widget.name}",
           style: TextStyle(fontSize: 29),
         ),
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 40),
-              height: 330,
-              decoration: BoxDecoration(
-                  color: Colors.lightGreen,
-                  borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20))),
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Positioned(
-                        bottom: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.purpleAccent,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "${widget.name}",
-                    style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Divider(
-                    thickness: 3,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "${widget.card1}",
-                            style: TextStyle(
-                                fontSize: 42,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white.withOpacity(0.9)),
-                          ),
-                          Text("Card 1",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text("${widget.card2}",
-                              style: TextStyle(
-                                  fontSize: 42,
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white.withOpacity(0.9))),
-                          Text("Card 2",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                        ],
-                      )
-                    ],
-                  )
-                ],
+      body: Card(
+          color: Colors.blue,
+          margin: const EdgeInsets.all(100),
+          elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: Text("${widget.card1}",
+              style: TextStyle(
+                color: Colors.white,
+                height: 2,
+                fontSize: 20.0,
               ),
-            ),
-          ],
-        ),
-      ),
+              textAlign: TextAlign.center)),
     );
   }
 }
