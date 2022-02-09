@@ -23,10 +23,10 @@ class _BoardingPageState extends State<BoardingPage> {
     // create a widget before making our home screen
     _currentPage = 0;
     _slides = [
-      Slide("assets/lock.png", "Acquire new knowledge about Phishing attacks "),
-      Slide("assets/phishing.png", "Avoid become a victim of Phishing attacks"),
+      Slide("assets/lock.png", "Acquire new knowledge about Phishing Attacks "),
+      Slide("assets/phishing.png", "Avoid become a victim of Phishing Attacks"),
       Slide("assets/scoreboard.png",
-          "Interesting lesson with Gamification elements")
+          "Interesting lesson with Gamification Elements")
     ];
     _pageController = PageController(initialPage: _currentPage);
     super.initState();

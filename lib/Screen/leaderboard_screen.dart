@@ -18,19 +18,22 @@ class _LeaderBoardState extends State<LeaderBoard> {
       children: <Widget>[
         Scaffold(
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.blue),
+                icon: Icon(Icons.arrow_back, color: Colors.white),
                 // redirect to boarding page
                 onPressed: () => {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomeScreen()))
                 },
               ),
+              title: Text(
+                "Leaderboard",
+                style: TextStyle(fontSize: 29),
+              ),
+              centerTitle: true,
             ),
             body: Container(
-              margin: EdgeInsets.only(top: 1.0),
+              margin: EdgeInsets.only(top: 5.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

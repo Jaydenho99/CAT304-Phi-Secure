@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
           ),
           SizedBox(
-            width: 80,
+            width: 40,
           ),
           ActionChip(
               label: Text(
