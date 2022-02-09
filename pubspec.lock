@@ -190,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  flash_card:
+    dependency: "direct main"
+    description:
+      name: flash_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -289,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  lint:
+    dependency: transitive
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.8.2"
   lints:
     dependency: transitive
     description:
