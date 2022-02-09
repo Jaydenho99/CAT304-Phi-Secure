@@ -26,7 +26,8 @@ class _OTP_ScreenState extends State<OTP_Screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OTP Verification'),
+        title: Text('OTP Verification', style: TextStyle(fontSize: 29)),
+        centerTitle: true,
       ),
       body: Column(
         children: [

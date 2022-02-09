@@ -14,7 +14,8 @@ class _phone_authState extends State<phone_auth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Phone Auth'),
+        title: Text('Phone Authentication', style: TextStyle(fontSize: 29)),
+        centerTitle: true,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

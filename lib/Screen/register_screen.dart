@@ -101,7 +101,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           return ("Password is required for login");
         }
         if (!regex.hasMatch(value)) {
-          return ("Please Enter Valid Password \nMin. 6 Character \nMin. 1 uppercase \nMin. 1 special character \nMin. 1 digit)");
+          return ("Please Enter Valid Password \nMin. 6 Character \nMin. 1 uppercase \nMin. 1 special character \nMin. 1 digit");
         }
       },
       onSaved: (value) {
