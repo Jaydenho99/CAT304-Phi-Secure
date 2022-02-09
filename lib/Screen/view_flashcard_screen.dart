@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flash_card/flash_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/flashcard_screen.dart';
@@ -31,6 +32,62 @@ class _ViewFlashcardState extends State<ViewFlashcard> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> card = [
+      widget.card1,
+      widget.card2,
+      widget.card3,
+      widget.card4,
+      widget.card5
+    ];
+
+    final List<FlashCard> flashCard = List.generate(
+        card.length,
+        (index) => FlashCard(
+              frontWidget: Container(
+                  height: 100,
+                  width: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/logo.png",
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text(
+                        card[index],
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
+                  )),
+              backWidget: Container(
+                height: 100,
+                width: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.name,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    Image.asset(
+                      "assets/logo.png",
+                      width: 200,
+                      height: 100,
+                    ),
+                  ],
+                ),
+              ),
+              width: 300,
+              height: 400,
+            ));
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -42,25 +99,19 @@ class _ViewFlashcardState extends State<ViewFlashcard> {
         ),
         actions: [],
         title: Text(
-          "${widget.name}",
+          "Flashcard",
           style: TextStyle(fontSize: 29),
         ),
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: Card(
-          color: Colors.blue,
-          margin: const EdgeInsets.all(100),
-          elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          child: Text("${widget.card1}",
-              style: TextStyle(
-                color: Colors.white,
-                height: 2,
-                fontSize: 20.0,
-              ),
-              textAlign: TextAlign.center)),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(55.0),
+        itemCount: flashCard.length,
+        itemBuilder: (context, index) {
+          return flashCard[index];
+        },
+      ),
     );
   }
 }
