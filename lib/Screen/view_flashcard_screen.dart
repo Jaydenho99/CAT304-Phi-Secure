@@ -99,8 +99,8 @@ class _ViewFlashcardState extends State<ViewFlashcard> {
         ),
         actions: [],
         title: Text(
-          "Flashcard",
-          style: TextStyle(fontSize: 29),
+          "${widget.name}",
+          style: TextStyle(fontSize: 24),
         ),
         centerTitle: true,
         elevation: 0.0,
