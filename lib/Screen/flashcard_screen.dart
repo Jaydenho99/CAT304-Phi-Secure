@@ -192,7 +192,6 @@ class _FlashcardState extends State<Flashcard> {
                                                                         .docs[index]
                                                                         .data()
                                                                     as dynamic)['Name'],
-                                                                number: index,
                                                                 card1: (snapshot
                                                                         .data!
                                                                         .docs[index]
