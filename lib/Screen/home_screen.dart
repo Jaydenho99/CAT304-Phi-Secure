@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:registerlogin/Screen/leaderboard_screen.dart';
 import 'package:registerlogin/Screen/login_screen.dart';
 import 'package:registerlogin/Screen/quiz/quiz_home.dart';
+import 'package:registerlogin/Screen/quiz/quiz_start.dart';
 import 'package:registerlogin/models/user_model.dart';
 import 'package:registerlogin/Screen/flashcard_screen.dart';
 
@@ -114,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () => {Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyApp()))},
+                        MaterialPageRoute(builder: (context) => HomePage()))},
                     child: Text(
                       "Quiz",
                       textAlign: TextAlign.center,
