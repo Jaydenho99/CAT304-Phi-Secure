@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:registerlogin/Screen/home_screen.dart';
+import 'package:registerlogin/models/user_model.dart';
 
 FirebaseFirestore firebase = FirebaseFirestore.instance;
 
@@ -15,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   int count = 0;
   List<String> questions = List.generate(25, (index) => '');
   List<String> answers = List.generate(25, (index) => '');
+  final _auth = FirebaseAuth.instance;
   int score = 0;
   int countElement = 0;
   //called when screen loads
@@ -84,7 +88,29 @@ class _HomePageState extends State<HomePage> {
                 )
               : Container(
                   child: count > countElement
-                      ? Text('Thanks for taking the quiz. Score is ${score}')
+                      ? Material(
+                          elevation: 5,
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.blue,
+                          child: MaterialButton(
+                            padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            minWidth: MediaQuery.of(context).size.width,
+                            onPressed: () {
+                              submitScore(score);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            },
+                            child: Text(
+                              "Submit",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ))
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -98,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               '${questions[count - 1]}',
                               style: TextStyle(fontSize: 21),
+                              textAlign: TextAlign.center,
                             ),
                             SizedBox(
                               height: 20,
@@ -146,5 +173,21 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ))),
     );
+  }
+
+  void submitScore(int score) async {
+    // calling firestore
+    // calling our user model
+    // sending the values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+
+    //writing all the values
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user?.uid)
+        .update({'point': score});
   }
 }
