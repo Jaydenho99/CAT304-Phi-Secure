@@ -62,19 +62,6 @@ class _ProfileState extends State<Profile> {
                         backgroundImage: NetworkImage("${widget.photo}"),
                         radius: 50,
                       ),
-                      Positioned(
-                        bottom: 0.0,
-                        right: 0.0,
-                        child: Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.purpleAccent,
-                          ),
-                        ),
-                      )
                     ],
                   ),
                   SizedBox(
