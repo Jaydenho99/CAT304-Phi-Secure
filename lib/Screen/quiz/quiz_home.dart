@@ -96,8 +96,8 @@ Widget build(BuildContext context) {
 	return MaterialApp(
 	home: Scaffold(
 		appBar: AppBar(
-		title: Text('Geeks for Geeks'),
-		backgroundColor: Color(0xFF00E676),
+		title: Text('Test Your Knowledge'),
+		backgroundColor:   Color.fromARGB(255, 25, 89, 133), 
 		),
 		body: Padding(
 		padding: const EdgeInsets.all(30.0),
@@ -114,3 +114,6 @@ Widget build(BuildContext context) {
 	); //MaterialApp
 }
 }
+
+
+
