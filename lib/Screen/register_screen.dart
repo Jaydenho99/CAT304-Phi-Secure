@@ -282,7 +282,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     //writing all the values
 
     userModel.email = user!.email;
-    userModel.uid = user!.uid;
+    userModel.uid = user.uid;
     userModel.username = usernameEditingController.text;
     userModel.point = 0;
     if (_selected == null) {
