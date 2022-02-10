@@ -226,7 +226,7 @@ class _FlashcardState extends State<Flashcard> {
                                                             .deepPurpleAccent,
                                                       ),
                                                       child: Text(
-                                                        "View Flashcard",
+                                                        "View Cards",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontWeight:
