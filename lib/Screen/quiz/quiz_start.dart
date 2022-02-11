@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${name}'),
+        title: Text('${name}', style: TextStyle(fontSize: 29)),
         centerTitle: true,
       ),
       body: Center(
@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
                         'There will be questions displayed one by one. All questions have one correct answer. The one which you think as correct, please press that option button.',
+                        textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 19),
                       ),
                     ),
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                           count++;
                         });
                       },
-                      color: Colors.green,
+                      color: Colors.blue,
                       height: 80,
                       minWidth: 300,
                       child: Text(
@@ -88,29 +89,38 @@ class _HomePageState extends State<HomePage> {
                 )
               : Container(
                   child: count > countElement
-                      ? Material(
-                          elevation: 5,
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.blue,
-                          child: MaterialButton(
-                            padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            minWidth: MediaQuery.of(context).size.width,
-                            onPressed: () {
-                              submitScore(score);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomeScreen()));
-                            },
-                            child: Text(
-                              "Submit",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ))
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                                'Thank you for taking the quiz. Your final score is ${score}',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20)),
+                            SizedBox(height: 40),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30)),
+                                  minimumSize: Size(200, 50)),
+                              onPressed: () {
+                                submitScore(score);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomeScreen()));
+                              },
+                              child: Text(
+                                "Submit",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
