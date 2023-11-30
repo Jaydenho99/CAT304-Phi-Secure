@@ -26,12 +26,14 @@ analysing the objective needs, practises, and motivations of students.
 ![image](https://github.com/Jaydenho99/CAT304-Phi-Secure/assets/77521676/93a7f4b9-d3ad-4d6f-b002-1b2bd321d8ec)
 
 2. Flashcard module
+   
 ![image](https://github.com/Jaydenho99/CAT304-Phi-Secure/assets/77521676/346243da-b557-4844-8a01-774c7fab4a3c)
 
-3. Quiz module
+4. Quiz module
+   
 ![image](https://github.com/Jaydenho99/CAT304-Phi-Secure/assets/77521676/3dab1ed7-609e-4dda-9403-3a8c05ed9f42)
 
-4. Leaderboard Module
+5. Leaderboard Module
 
 ![image](https://github.com/Jaydenho99/CAT304-Phi-Secure/assets/77521676/27b2d4bf-f88f-4cae-9545-b8340928a9c5)
 
